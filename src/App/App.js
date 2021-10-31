@@ -68,6 +68,10 @@ function App() {
     setIsLoading(false);
   }, [currentPage, filter]);
 
+  useEffect(async () => {
+    setCurrentPage(1);
+  }, [filter]);
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
