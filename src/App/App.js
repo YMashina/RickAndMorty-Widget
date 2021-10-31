@@ -63,14 +63,17 @@ function App() {
   };
 
   useEffect(async () => {
+    setCurrentPage(1);
+    setIsLoading(true);
+    await getAllCharacters(1);
+    setIsLoading(false);
+  }, [filter]);
+
+  useEffect(async () => {
     setIsLoading(true);
     await getAllCharacters(currentPage);
     setIsLoading(false);
-  }, [currentPage, filter]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filter]);
+  }, [currentPage]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -90,7 +93,7 @@ function App() {
           <CharactersList characters={displayCharacters} />
         )}
 
-        {displayCharacters.length !== 0 ? (
+        {!isLoading && displayCharacters.length !== 0 ? (
           <Pagination
             className={styles.pagination}
             page={currentPage}

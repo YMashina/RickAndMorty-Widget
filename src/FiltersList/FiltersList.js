@@ -11,7 +11,7 @@ const FiltersList = () => {
       {Object.keys(filter).map((key) => {
         if (filter && filter[key] && filter[key].length && key !== "name") {
           return (
-            <span className={styles.filtersListButton}>
+            <span key={key} className={styles.filtersListButton}>
               <Button
                 outline
                 pill
