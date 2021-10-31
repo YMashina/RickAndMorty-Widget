@@ -68,7 +68,7 @@ function App() {
     setIsLoading(false);
   }, [currentPage, filter]);
 
-  useEffect(async () => {
+  useEffect(() => {
     setCurrentPage(1);
   }, [filter]);
 
