@@ -1,0 +1,15 @@
+.filtersListButton{
+  color: #5e5e5e;
+  margin-left: 0.1rem !important;
+
+}
+
+
+.listOfFiltersApplied{
+  margin-right: auto;
+  margin-left: 2rem;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    margin-bottom: 1rem !important;
+  }
+}

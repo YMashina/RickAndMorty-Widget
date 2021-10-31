@@ -1,0 +1,13 @@
+.smallCard{
+  transition: 0.25s;
+  max-width: 25rem;
+  img{
+    max-width: 25rem;
+    max-height: 25rem;
+  }
+  &:hover{
+    box-shadow: 0 0 10px #5e5e5e !important;
+    background: #f5f5f5 !important;
+  }
+
+}

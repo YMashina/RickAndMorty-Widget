@@ -1,0 +1,52 @@
+.searchBar{
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+.searchByName{
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchBarAdaptive{
+  @media screen and (max-width: 800px) {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+}
+
+.inputFont{
+  font-size: 1rem !important;
+  outline: none !important;
+}
+
+.filterCollapse{
+  position: absolute;
+  right: 1.7rem;
+  font-size: 0.9rem;
+  z-index: 3;
+  background: white;
+  border-radius: 15px;
+  border: solid 1px #e8e8e8;
+  box-shadow: 0 0 5px #c4c4c4;
+
+  @media screen and (max-width: 500px) {
+    width: 90%;
+  }
+}
+
+.collapse{
+  padding: 1rem;
+  select{
+    width: 100% !important;
+  }
+
+}
+
+.moreFiltersButton{
+
+  margin-left: auto;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+}

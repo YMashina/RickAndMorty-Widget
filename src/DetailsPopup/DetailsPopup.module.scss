@@ -1,0 +1,15 @@
+.scroll{
+  overflow-y: scroll;
+  height: 80vh;
+  @media screen and (max-width: 500px) {
+    height: 60vh;
+  }
+}
+
+.hideScrollbar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
