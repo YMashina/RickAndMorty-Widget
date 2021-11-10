@@ -22,7 +22,7 @@ const App = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(async () => {
+  useEffect(() => {
     dispatch(fetchCharacters(currentPage, createFilterRequest()));
   }, [currentPage]);
 
