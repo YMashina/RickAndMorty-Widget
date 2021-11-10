@@ -17,20 +17,18 @@ const App = () => {
     (state) => state.displayCharacters
   );
 
-  const filter = useSelector((state) => state.filter);
   const error = useSelector((state) => state.error);
   const isLoading = useSelector((state) => state.displayCharacters.isLoading);
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    setCurrentPage(1);
-    dispatch(fetchCharacters(1, createFilterRequest()));
-  }, [filter]);
-
   useEffect(async () => {
     dispatch(fetchCharacters(currentPage, createFilterRequest()));
   }, [currentPage]);
+
+  const handlePaginationChange = (e, page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className={styles.widget}>
@@ -45,9 +43,7 @@ const App = () => {
           page={currentPage}
           count={numPages}
           size="small"
-          onChange={(e, page) => {
-            setCurrentPage(page);
-          }}
+          onChange={handlePaginationChange}
         />
       ) : null}
     </div>

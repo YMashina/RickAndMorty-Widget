@@ -12,6 +12,8 @@ import {
 import FiltersList from "../FiltersList/FiltersList";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterAction } from "../../redux/actions/actions";
+import { fetchCharacters } from "../../redux/actions/asyncActions";
+import { createFilterRequest } from "../App/constants";
 
 const Filters = () => {
   const [isCollapseOpen, setIsCollapseOpen] = useState(false);
@@ -53,6 +55,7 @@ const Filters = () => {
     filters.name = nameRef.current.value;
 
     dispatch(setFilterAction(filters));
+    dispatch(fetchCharacters(1, createFilterRequest(filters)));
     return filters;
   };
 

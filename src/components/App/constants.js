@@ -1,7 +1,7 @@
 import store from "../../redux/store";
 
-export const createFilterRequest = () => {
-  const { filter } = store.getState();
+export const createFilterRequest = (filter = null) => {
+  if (!filter) filter = store.getState().filter;
   let filterRequest = "";
   if (filter.name) filterRequest += `&name=${filter.name}`;
   if (filter.status) filterRequest += `&status=${filter.status}`;

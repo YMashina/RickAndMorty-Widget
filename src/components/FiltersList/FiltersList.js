@@ -3,6 +3,8 @@ import styles from "./FiltersList.module.scss";
 import { Button } from "shards-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterAction } from "../../redux/actions/actions";
+import { fetchCharacters } from "../../redux/actions/asyncActions";
+import { createFilterRequest } from "../App/constants";
 
 const FiltersList = () => {
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ const FiltersList = () => {
                   const filterCopy = { ...filter };
                   filterCopy[key] = "";
                   dispatch(setFilterAction(filterCopy));
+                  dispatch(fetchCharacters(1, createFilterRequest(filterCopy)));
                 }}
               >
                 × {key}: {filter[key]}
