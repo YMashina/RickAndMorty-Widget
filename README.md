@@ -1,1 +1,1 @@
-Demo: https://rickandmorty-widget.herokuapp.com/
+Demo: https://rickandmortywidget.herokuapp.com/
