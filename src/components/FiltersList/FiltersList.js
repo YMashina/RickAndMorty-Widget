@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./FiltersList.module.scss";
 import { Button } from "shards-react";
-import { Context } from "../context";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilterAction } from "../../redux/actions/actions";
 
 const FiltersList = () => {
-  const { filter, setFilter } = useContext(Context);
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.filter);
 
   return (
     <div className={styles.listOfFiltersApplied}>
@@ -20,7 +22,7 @@ const FiltersList = () => {
                 onClick={() => {
                   const filterCopy = { ...filter };
                   filterCopy[key] = "";
-                  setFilter(filterCopy);
+                  dispatch(setFilterAction(filterCopy));
                 }}
               >
                 × {key}: {filter[key]}

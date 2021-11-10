@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Filters.module.scss";
 import {
   ButtonToolbar,
@@ -9,8 +9,9 @@ import {
   Collapse,
   InputGroupAddon,
 } from "shards-react";
-import { Context } from "../context";
 import FiltersList from "../FiltersList/FiltersList";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilterAction } from "../../redux/actions/actions";
 
 const Filters = () => {
   const [isCollapseOpen, setIsCollapseOpen] = useState(false);
@@ -22,7 +23,8 @@ const Filters = () => {
   const collapseBoxRef = useRef();
   const collapseButtonRef = useRef();
 
-  const { setFilter, filter } = useContext(Context);
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.filter);
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -50,7 +52,7 @@ const Filters = () => {
     }
     filters.name = nameRef.current.value;
 
-    setFilter(filters);
+    dispatch(setFilterAction(filters));
     return filters;
   };
 

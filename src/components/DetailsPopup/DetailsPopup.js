@@ -1,20 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
-import { CardTitle, Modal, ModalBody, ModalHeader } from "shards-react";
-import { Context } from "../context";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { CardTitle, Modal, ModalBody } from "shards-react";
 import Spinner from "../Spinner/Spinner";
 import styles from "./DetailsPopup.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsModalOpenAction } from "../../redux/actions/actions";
 
-const DetailsPopup = ({ id }) => {
-  const { toggleModal, isModalOpen } = useContext(Context);
-  const [isLoading, setIsLoading] = useState(true);
-  const [character, setCharacter] = useState(null);
+const DetailsPopup = () => {
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector((state) => state.isModalOpen);
+  const character = useSelector((state) => state.characterData.data);
+  const isLoading = useSelector((state) => state.characterData.isLoading);
 
-  const getCharacterById = async () => {
-    const character = await axios.get(
-      `https://rickandmortyapi.com/api/character/${id}`
-    );
-    return character;
+  const toggleModal = () => {
+    dispatch(setIsModalOpenAction(!isModalOpen));
   };
 
   useEffect(() => {
@@ -22,15 +20,6 @@ const DetailsPopup = ({ id }) => {
       document.body.style.overflow = "hidden";
     } else document.body.style.overflow = "visible";
   }, [isModalOpen]);
-
-  useEffect(async () => {
-    setIsLoading(true);
-    if (id) {
-      const char = await getCharacterById();
-      setCharacter(char.data);
-      setIsLoading(false);
-    }
-  }, [id]);
 
   const episodesList = () => {
     let episodes = "";
@@ -54,16 +43,16 @@ const DetailsPopup = ({ id }) => {
       ) : (
         <ModalBody className={`${styles.scroll} ${styles.hideScrollbar}`}>
           <img src={character.image} />
-          <p />
+          <br />
           <CardTitle>{character.name}</CardTitle>
           <div>Species: {character.species}</div>
           <div>Gender: {character.gender}</div>
           <div>Status: {character.status}</div>
           {character.type.length ? <div>Type: {character.type}</div> : null}
-          <p />
+          <br />
           <div>Origin: {character.origin.name}</div>
           <div>Location: {character.location.name}</div>
-          <p />
+          <br />
           <div>Episodes:</div>
           <div>{episodesList()}</div>
         </ModalBody>
